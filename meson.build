@@ -4,6 +4,16 @@ project('libpibase', 'cpp',
     ]
 )
 
-pibase_headers = [
-	'inc/'
+pibase_sources = [
+    'src/file_ops.cpp'
 ]
+
+inc = include_directories('inc')
+
+libpibase = shared_library('libpibase',
+    pibase_sources,
+    include_directories : inc,
+    install : true)
+
+libpibase_dep = declare_dependency(include_directories : inc,
+    link_with : libpibase)
